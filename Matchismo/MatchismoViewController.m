@@ -20,8 +20,8 @@
 @implementation MatchismoViewController
 
 // test comment
-// test comment with git acount "leserman" at 4:18
-// test comment with git account "leserman at 4:23 on 8/3/13
+// test comment on skyler's computer at 4:30 on 8/3/13
+// test comment on david's computer at 4:38 on 8/3/13
 
 - (void)viewDidLoad
 {
