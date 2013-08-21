@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Matchismo/CardGameViewController.m"
-         timestampString = "390696269.493978"
+         timestampString = "398472009.766348"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "91"
-         endingLineNumber = "91"
+         startingLineNumber = "89"
+         endingLineNumber = "89"
          landmarkName = "-displayCardImage:isFaceUp:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Matchismo/CardGameViewController.m"
-         timestampString = "390354832.349995"
+         timestampString = "398472009.766348"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "65"
-         endingLineNumber = "65"
+         startingLineNumber = "63"
+         endingLineNumber = "63"
          landmarkName = "-updateUI"
          landmarkType = "5">
       </FileBreakpoint>
@@ -294,11 +294,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Matchismo/CardGameViewController.m"
-         timestampString = "390354832.349995"
+         timestampString = "398472009.766348"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "57"
-         endingLineNumber = "57"
+         startingLineNumber = "55"
+         endingLineNumber = "55"
          landmarkName = "-updateUI"
          landmarkType = "5">
       </FileBreakpoint>
@@ -314,19 +314,6 @@
          endingLineNumber = "12"
          landmarkName = "totalScore"
          landmarkType = "19">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Matchismo/CardGameViewController.m"
-         timestampString = "390354832.349995"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "42"
-         endingLineNumber = "42"
-         landmarkName = "-game"
-         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"

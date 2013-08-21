@@ -18,8 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *flipResult;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
-@property (strong, nonatomic) CardMatchingGame *game;
 @property (strong, nonatomic) UIImage *cardBackImage;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *twoOrThreeCardMatchingGame;
 @end

@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CardMatchingGame.h"
 
 @interface CardGameViewController : UIViewController
 - (IBAction)newGame:(UIButton *)sender;
-
+@property (strong, nonatomic) CardMatchingGame *game;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @end
