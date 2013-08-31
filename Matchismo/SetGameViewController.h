@@ -7,7 +7,10 @@
 //
 
 #import "CardGameViewController.h"
+#import "SetCard.h"
 
 @interface SetGameViewController : CardGameViewController
+
++(NSString *)getCardString:(SetCard *)card;
 
 @end

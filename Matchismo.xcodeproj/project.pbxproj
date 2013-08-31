@@ -27,6 +27,7 @@
 		D433C82016D05F43000EC432 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = D433C81F16D05F43000EC432 /* Deck.m */; };
 		D433C82316D0689F000EC432 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = D433C82216D0689F000EC432 /* PlayingCard.m */; };
 		D433C82616D06B64000EC432 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = D433C82516D06B64000EC432 /* PlayingCardDeck.m */; };
+		D447AB2F17C56F9C001F68E7 /* SetCard.m in Sources */ = {isa = PBXBuildFile; fileRef = D447AB2D17C56F9C001F68E7 /* SetCard.m */; };
 		D4FFEC3B175F87AA00762F76 /* set.tif in Resources */ = {isa = PBXBuildFile; fileRef = D4FFEC3A175F87AA00762F76 /* set.tif */; };
 		D4FFEC3D175F890900762F76 /* Machismo.tif in Resources */ = {isa = PBXBuildFile; fileRef = D4FFEC3C175F890900762F76 /* Machismo.tif */; };
 		D4FFEC3F175F895B00762F76 /* Bicycle-Rider-Backs.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4FFEC3E175F895B00762F76 /* Bicycle-Rider-Backs.gif */; };
@@ -69,6 +70,8 @@
 		D433C82216D0689F000EC432 /* PlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCard.m; path = Model/PlayingCard.m; sourceTree = "<group>"; };
 		D433C82416D06B64000EC432 /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingCardDeck.h; path = Model/PlayingCardDeck.h; sourceTree = "<group>"; };
 		D433C82516D06B64000EC432 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = Model/PlayingCardDeck.m; sourceTree = "<group>"; };
+		D447AB2D17C56F9C001F68E7 /* SetCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetCard.m; path = Model/SetCard.m; sourceTree = "<group>"; };
+		D447AB2E17C56F9C001F68E7 /* SetCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetCard.h; path = Model/SetCard.h; sourceTree = "<group>"; };
 		D4FFEC3A175F87AA00762F76 /* set.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = set.tif; sourceTree = "<group>"; };
 		D4FFEC3C175F890900762F76 /* Machismo.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Machismo.tif; sourceTree = "<group>"; };
 		D4FFEC3E175F895B00762F76 /* Bicycle-Rider-Backs.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Bicycle-Rider-Backs.gif"; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 				D433C81F16D05F43000EC432 /* Deck.m */,
 				D433C82116D0689F000EC432 /* PlayingCard.h */,
 				D433C82216D0689F000EC432 /* PlayingCard.m */,
+				D447AB2D17C56F9C001F68E7 /* SetCard.m */,
+				D447AB2E17C56F9C001F68E7 /* SetCard.h */,
 				D433C82416D06B64000EC432 /* PlayingCardDeck.h */,
 				D433C82516D06B64000EC432 /* PlayingCardDeck.m */,
 			);
@@ -267,6 +272,7 @@
 				63959A7B1744559E0012DAF8 /* ThreeCardMatchingGame.m in Sources */,
 				63C7E9AF175FDCBA00A90D54 /* MatchismoViewController.m in Sources */,
 				63C7E9B2175FDCDD00A90D54 /* SetGameViewController.m in Sources */,
+				D447AB2F17C56F9C001F68E7 /* SetCard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

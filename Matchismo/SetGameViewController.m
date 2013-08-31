@@ -14,6 +14,12 @@
 
 @implementation SetGameViewController
 
++(NSString *)getCardString:(SetCard *)card
+{
+    //
+    +(NSString *)getCardString:(SetCard *)card
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
