@@ -12,8 +12,17 @@
 @end
 
 @implementation PlayingCard
-@synthesize suit = _suit;
-@synthesize rank = _rank;
+//@synthesize suit = _suit;
+//@synthesize rank = _rank;
+
+-(id)init
+{
+    if (self = [super init]) {
+        self.suit = [[NSString alloc] init];
+        self.rank = nil;
+    }
+    return self;
+}
 
 - (int)match:(NSArray *)otherCards
 {
@@ -52,13 +61,13 @@
 -  (void) setSuit:(NSString *)suit
 {
     if ([[PlayingCard validSuits] containsObject:suit]) {
-        _suit = suit;
+        self.suit = suit;
     }
 }
 
 - (NSString *)suit
 {
-    return _suit ? _suit : @"?";
+    return self.suit ? self.suit : @"?";
 }
 
 + (NSArray *)rankStrings
@@ -74,7 +83,7 @@
 - (void)setRank:(NSUInteger)rank
 {
 	if (rank <= [PlayingCard maxRank]) {
-		_rank = rank;
+		self.rank = rank;
 	}
 }
 

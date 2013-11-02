@@ -1,34 +1,41 @@
 //
-//  PlayingCard.m
+//  SetCard.m
 //  Matchismo
 //
 //  Created by Skyler Arnold on 2/16/13.
 //  Copyright (c) 2013 Skyler Arnold. All rights reserved.
 //
 
-#import "PlayingCard.h"
-@interface PlayingCard()
+#import "SetCard.h"
+@interface SetCard()
 
 @end
 
-@implementation PlayingCard
-@synthesize suit = _suit;
-@synthesize rank = _rank;
+@implementation SetCard
+
+-(id)init
+{
+    if (self = [super init]) {
+        self.suit = [[NSString alloc] init];
+        self.rank = 0;
+    }
+    return self;
+}
 
 - (int)match:(NSArray *)otherCards
 {
     int score = 0;
     
     if (otherCards.count == 1) {
-        PlayingCard *otherCard = [otherCards lastObject];
+        SetCard *otherCard = [otherCards lastObject];
         if ([otherCard.suit isEqualToString:self.suit]) {
             score = 1;
         } else if (otherCard.rank == self.rank) {
             score = 4;
         }
     } else if (otherCards.count == 2) { // means we have a 3 card matching game
-        PlayingCard *secondCard = otherCards[0];
-        PlayingCard *thirdCard = otherCards[1];
+        SetCard *secondCard = otherCards[0];
+        SetCard *thirdCard = otherCards[1];
         if ([secondCard.suit isEqualToString:self.suit] && [thirdCard.suit isEqualToString:self.suit]) {
             score = 3;
         } else if ((secondCard.rank == self.rank) && (thirdCard.rank == self.rank)){
@@ -40,7 +47,7 @@
 
 - (NSString *)contents
 {
-	NSArray *rankStrings = [PlayingCard rankStrings];
+	NSArray *rankStrings = [SetCard rankStrings];
 	return [rankStrings[self.rank] stringByAppendingString:self.suit];
 }
 
@@ -51,7 +58,7 @@
 
 -  (void) setSuit:(NSString *)suit
 {
-    if ([[PlayingCard validSuits] containsObject:suit]) {
+    if ([[SetCard validSuits] containsObject:suit]) {
         _suit = suit;
     }
 }
@@ -73,7 +80,7 @@
 
 - (void)setRank:(NSUInteger)rank
 {
-	if (rank <= [PlayingCard maxRank]) {
+	if (rank <= [SetCard maxRank]) {
 		_rank = rank;
 	}
 }

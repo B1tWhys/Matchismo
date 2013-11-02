@@ -16,8 +16,8 @@
 
 +(NSString *)getCardString:(SetCard *)card
 {
-    //
-    +(NSString *)getCardString:(SetCard *)card
+    NSString *placeHolderVariable = [[NSString alloc] init];
+    return placeHolderVariable;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
