@@ -28,6 +28,8 @@
 		D433C82316D0689F000EC432 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = D433C82216D0689F000EC432 /* PlayingCard.m */; };
 		D433C82616D06B64000EC432 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = D433C82516D06B64000EC432 /* PlayingCardDeck.m */; };
 		D447AB2F17C56F9C001F68E7 /* SetCard.m in Sources */ = {isa = PBXBuildFile; fileRef = D447AB2D17C56F9C001F68E7 /* SetCard.m */; };
+		D45318351824BA4400A1EB27 /* UISetCardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D45318341824BA4400A1EB27 /* UISetCardButton.m */; };
+		D48559A2181889D300A13AB4 /* SetCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = D48559A1181889D300A13AB4 /* SetCardDeck.m */; };
 		D4FFEC3B175F87AA00762F76 /* set.tif in Resources */ = {isa = PBXBuildFile; fileRef = D4FFEC3A175F87AA00762F76 /* set.tif */; };
 		D4FFEC3D175F890900762F76 /* Machismo.tif in Resources */ = {isa = PBXBuildFile; fileRef = D4FFEC3C175F890900762F76 /* Machismo.tif */; };
 		D4FFEC3F175F895B00762F76 /* Bicycle-Rider-Backs.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4FFEC3E175F895B00762F76 /* Bicycle-Rider-Backs.gif */; };
@@ -72,6 +74,10 @@
 		D433C82516D06B64000EC432 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = Model/PlayingCardDeck.m; sourceTree = "<group>"; };
 		D447AB2D17C56F9C001F68E7 /* SetCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetCard.m; path = Model/SetCard.m; sourceTree = "<group>"; };
 		D447AB2E17C56F9C001F68E7 /* SetCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetCard.h; path = Model/SetCard.h; sourceTree = "<group>"; };
+		D45318331824BA4400A1EB27 /* UISetCardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UISetCardButton.h; path = View/UISetCardButton.h; sourceTree = "<group>"; };
+		D45318341824BA4400A1EB27 /* UISetCardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISetCardButton.m; path = View/UISetCardButton.m; sourceTree = "<group>"; };
+		D48559A0181889D300A13AB4 /* SetCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCardDeck.h; sourceTree = "<group>"; };
+		D48559A1181889D300A13AB4 /* SetCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCardDeck.m; sourceTree = "<group>"; };
 		D4FFEC3A175F87AA00762F76 /* set.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = set.tif; sourceTree = "<group>"; };
 		D4FFEC3C175F890900762F76 /* Machismo.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Machismo.tif; sourceTree = "<group>"; };
 		D4FFEC3E175F895B00762F76 /* Bicycle-Rider-Backs.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Bicycle-Rider-Backs.gif"; sourceTree = "<group>"; };
@@ -136,7 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				D433C81D16D05EFF000EC432 /* Model */,
-				D433C80F16D05575000EC432 /* MainStoryboard.storyboard */,
+				D45318321824BA0500A1EB27 /* View */,
 				D433C81216D05575000EC432 /* CardGameViewController.h */,
 				D433C81316D05575000EC432 /* CardGameViewController.m */,
 				63C7E9AD175FDCBA00A90D54 /* MatchismoViewController.h */,
@@ -168,6 +174,8 @@
 		D433C81D16D05EFF000EC432 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D48559A0181889D300A13AB4 /* SetCardDeck.h */,
+				D48559A1181889D300A13AB4 /* SetCardDeck.m */,
 				63217A9F16EBEE2F00361C75 /* CardMatchingGame.h */,
 				63217AA016EBEE2F00361C75 /* CardMatchingGame.m */,
 				63C064601735BBFE001DF98D /* TwoCardMatchingGame.m */,
@@ -186,6 +194,16 @@
 				D433C82516D06B64000EC432 /* PlayingCardDeck.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		D45318321824BA0500A1EB27 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D433C80F16D05575000EC432 /* MainStoryboard.storyboard */,
+				D45318331824BA4400A1EB27 /* UISetCardButton.h */,
+				D45318341824BA4400A1EB27 /* UISetCardButton.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,10 +283,12 @@
 				D433C81416D05575000EC432 /* CardGameViewController.m in Sources */,
 				D433C81C16D05ECB000EC432 /* Card.m in Sources */,
 				D433C82016D05F43000EC432 /* Deck.m in Sources */,
+				D48559A2181889D300A13AB4 /* SetCardDeck.m in Sources */,
 				D433C82316D0689F000EC432 /* PlayingCard.m in Sources */,
 				D433C82616D06B64000EC432 /* PlayingCardDeck.m in Sources */,
 				63217AA116EBEE2F00361C75 /* CardMatchingGame.m in Sources */,
 				63C064621735BBFE001DF98D /* TwoCardMatchingGame.m in Sources */,
+				D45318351824BA4400A1EB27 /* UISetCardButton.m in Sources */,
 				63959A7B1744559E0012DAF8 /* ThreeCardMatchingGame.m in Sources */,
 				63C7E9AF175FDCBA00A90D54 /* MatchismoViewController.m in Sources */,
 				63C7E9B2175FDCDD00A90D54 /* SetGameViewController.m in Sources */,
