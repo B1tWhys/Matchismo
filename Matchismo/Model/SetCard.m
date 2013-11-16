@@ -22,9 +22,9 @@
     return self;
 }
 
-- (int)match:(NSArray *)otherCards
+- (id)initWithCount:(int)count shape:(int)shape fill:(int)fill color:(int)color
 {
-    int score = 0;
+    self = [super init];
     
     if (otherCards.count == 1) {
         SetCard *otherCard = [otherCards lastObject];
@@ -51,10 +51,6 @@
 	return [rankStrings[self.rank] stringByAppendingString:self.suit];
 }
 
-+ (NSArray*)validSuits
-{
-    return @[@"♠", @"♣", @"♥", @"♦"];
-}
 
 -  (void) setSuit:(NSString *)suit
 {
@@ -70,15 +66,12 @@
 
 + (NSArray *)rankStrings
 {
-	return @[@"?", @"A", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"J", @"Q", @"K"];
+    int score = 0;
+
+    return score;
 }
 
-+ (NSUInteger)maxRank
-{
-    return [self rankStrings].count-1;
-}
-
-- (void)setRank:(NSUInteger)rank
+- (NSString *)contents
 {
 	if (rank <= [SetCard maxRank]) {
 		_rank = rank;
@@ -86,3 +79,5 @@
 }
 
 @end
+
+// We need to implamant a SetCardButton derived fron UIButton that adds a method called contents, for instance.

@@ -43,7 +43,7 @@
 
 - (IBAction)flipCard:(UIButton *)sender
 {
-    Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:sender]];
+//    Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:sender]];
 	[self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     [self updateUI];
 }
