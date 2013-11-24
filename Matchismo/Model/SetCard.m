@@ -8,7 +8,10 @@
 
 #import "SetCard.h"
 @interface SetCard()
-
+@property (nonatomic)int count; // 0 = undefined, 1-3 are valid values
+@property (nonatomic)int shape; // 0 = undefined, 1 = square, 2 = circle, 3 = triangle
+@property (nonatomic)int fill; // 0 = undefined, 1 = none, 2 = shaded, 3 = solid
+@property (nonatomic)int color; // 0 = undefined, 1 = red, 2 = green, 3 = blue
 @end
 
 @implementation SetCard
@@ -16,15 +19,27 @@
 -(id)init
 {
     if (self = [super init]) {
-        self.suit = [[NSString alloc] init];
-        self.rank = 0;
+        self.count = 0;
+        self.shape = 0;
+        self.fill = 0;
+        self.color = 0;
     }
     return self;
 }
 
 - (id)initWithCount:(int)count shape:(int)shape fill:(int)fill color:(int)color
 {
-    self = [super init];
+    if (self = [super init])
+    {
+        self.count = count;
+        self.shape = shape;
+        self.fill = fill;
+        self.color = color;
+    }
+    
+    return self;
+/*
+ self = [super init];
     
     if (otherCards.count == 1) {
         SetCard *otherCard = [otherCards lastObject];
@@ -43,40 +58,9 @@
         }
     }
     return score;
+*/
 }
 
-- (NSString *)contents
-{
-	NSArray *rankStrings = [SetCard rankStrings];
-	return [rankStrings[self.rank] stringByAppendingString:self.suit];
-}
-
-
--  (void) setSuit:(NSString *)suit
-{
-    if ([[SetCard validSuits] containsObject:suit]) {
-        _suit = suit;
-    }
-}
-
-- (NSString *)suit
-{
-    return _suit ? _suit : @"?";
-}
-
-+ (NSArray *)rankStrings
-{
-    int score = 0;
-
-    return score;
-}
-
-- (NSString *)contents
-{
-	if (rank <= [SetCard maxRank]) {
-		_rank = rank;
-	}
-}
 
 @end
 

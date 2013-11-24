@@ -16,6 +16,11 @@
     return self;
 }
 
+- (NSString *)contents
+{
+    return @"";
+}
+
 - (int)match:(NSArray *)otherCards {
     int score = 0;
     
@@ -27,24 +32,6 @@
     return score;
 }
 
-//- (int)match:(NSArray *)otherCards {
-//    int score = 0;
-//    if ([otherCards count] == 1) {
-//        for (Card *card in otherCards) {
-//            if ([card.contents isEqualToString:self.contents]) {
-//                score = 1;
-//            }
-//        }
-//    } else {
-//        for (Card *card in otherCards) {
-//            if ([card.contents isEqualToString:self.contents]) {
-//                score = 1;
-//            }
-//        }
-//    }
-//    
-//    return score;
-//}
 
 - (void)flip {
     _faceUp = !_faceUp;

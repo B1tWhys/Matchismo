@@ -10,10 +10,10 @@
 
 @interface SetCard : Card
 
-@property (nonatomic)int count;
-@property (nonatomic)int shape; // 0 = undefined, 1 = square, 2 = circle, 3 = triangle
-@property (nonatomic)int fill; // 0 = undefined, 1 = none, 2 = shaded, 3 = solid
-@property (nonatomic)int color; // 0 = undefined, 1 = red, 2 = green, 3 = blue
+@property (nonatomic, readonly)int count; // 0 = undefined, 1-3 are valid values
+@property (nonatomic, readonly)int shape; // 0 = undefined, 1 = square, 2 = circle, 3 = triangle
+@property (nonatomic, readonly)int fill; // 0 = undefined, 1 = none, 2 = shaded, 3 = solid
+@property (nonatomic, readonly)int color; // 0 = undefined, 1 = red, 2 = green, 3 = blue
 
 
 - (id)initWithCount:(int)count shape:(int)shape fill:(int)fill color:(int)color;
