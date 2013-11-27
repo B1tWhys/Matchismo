@@ -49,6 +49,7 @@
 
 - (void)flipCardAtIndex:(NSUInteger)index
 {
+    // Since this method does nothing, why does it exist? 11/27/13
 }
 
 @end

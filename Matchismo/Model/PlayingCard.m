@@ -12,14 +12,15 @@
 @end
 
 @implementation PlayingCard
-//@synthesize suit = _suit;
-//@synthesize rank = _rank;
+// The following 2 lines were commented out and David restored them on 11/27/13
+@synthesize suit = _suit;
+@synthesize rank = _rank;
 
 -(id)init
 {
     if (self = [super init]) {
         self.suit = [[NSString alloc] init];
-        self.rank = nil;
+        self.rank = 0;
     }
     return self;
 }
@@ -61,13 +62,18 @@
 -  (void) setSuit:(NSString *)suit
 {
     if ([[PlayingCard validSuits] containsObject:suit]) {
-        self.suit = suit;
+        // as for rank, use: (11/27/13)
+        _suit = suit;
+        // rather than
+//        self.suit = suit;
     }
 }
 
 - (NSString *)suit
 {
-    return self.suit ? self.suit : @"?";
+    // 11/27/13 - Here again, the next line makes a recursive call exhausting memory
+//    return self.suit ? self.suit : @"?";
+    return _suit ? _suit : @"?";
 }
 
 + (NSArray *)rankStrings
@@ -83,7 +89,10 @@
 - (void)setRank:(NSUInteger)rank
 {
 	if (rank <= [PlayingCard maxRank]) {
-		self.rank = rank;
+        // self.rank implicitly calls setRank, a recursive call that exhausts memory (11/27/13)
+//		self.rank = rank;
+        // rather, use: (11/27/13)
+		_rank = rank;
 	}
 }
 
