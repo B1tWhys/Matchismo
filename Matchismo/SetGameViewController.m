@@ -13,6 +13,9 @@
 @end
 
 @implementation SetGameViewController
+/*
+we need a setGame class, which will do the logic for a set game here, we will put the initiator in the view did load method. While this is different from the CardGameViewControler, i think it is right, because there, we basicly turned the setter into the initializer, instead of just initilizing the object right when matchismo loads
+*/
 
 +(NSString *)getCardString:(SetCard *)card
 {
