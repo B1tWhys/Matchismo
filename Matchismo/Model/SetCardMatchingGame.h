@@ -1,5 +1,5 @@
 //
-//  SetCardMatching.h
+//  SetCardMatchingGame.h
 //  Matchismo
 //
 //  Created by Skyler Arnold on 12/5/13.
@@ -8,6 +8,8 @@
 
 #import "CardMatchingGame.h"
 
-@interface SetCardMatching : CardMatchingGame
+@interface SetCardMatchingGame : CardMatchingGame
+
+- (void)selectCardAtIndex:(int)index;
 
 @end
