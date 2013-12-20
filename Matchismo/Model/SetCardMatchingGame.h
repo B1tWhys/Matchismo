@@ -10,6 +10,6 @@
 
 @interface SetCardMatchingGame : CardMatchingGame
 
-- (void)selectCardAtIndex:(int)index;
+- (void)selectCardAtIndex:(NSUInteger)index;
 
 @end
