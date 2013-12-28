@@ -24,32 +24,44 @@
     return (SetCardMatchingGame *) self;
 }
 
+// - (void)displayCardImage:(UIButton *) cardButton isFaceUp:(BOOL) faceUp
+
 // Note:
 //  removeObjectAtIndex():
 //  Removes the object at index.
 //  To fill the gap, all elements beyond index are moved by subtracting 1 from their index.
 
+
+
+// Returns YES if all three inputs have the same value or they all have different values. Else returns NO.
+- (BOOL)isMatchOnProperty1:(int) prop1 property2:(int) prop2 property3:(int) prop3
+{
+    BOOL match;
+    if (prop1 == prop2 && prop2 == prop3) match = YES;
+    else if (prop1 != prop2 && prop2 != prop3 && prop1 != prop3) match = YES;
+    else match = NO;
+    return match;
+}
+
 - (BOOL)isMatch
 {
-    // They all have the same shading, or they have three different shadings.
-    // They all have the same color, or they have three different colors.
-    
-    BOOL match = NO;
-
     SetCard *card1 = self.currentlySelectedCards[0];
     SetCard *card2 = self.currentlySelectedCards[1];
     SetCard *card3 = self.currentlySelectedCards[2];
-    // They all have the same number, or they have three different numbers.
-    if (card1.count == card2.count && card2.count == card3.count) match = YES;
-    if (card1.count != card2.count && card2.count != card3.count && card1.count != card3.count) match = YES;
-    // They all have the same symbol, or they have three different symbols.
-    if (card1.shape == card2.shape && card2.shape == card3.shape) match = YES;
-    if (card1.shape != card2.shape && card2.shape != card3.shape && card1.shape != card3.shape) match = YES;
-    if (card1.color == card2.color && card2.color == card3.color) match = YES;
-    if (card1.color != card2.color && card2.color != card3.color && card1.color != card3.color) match = YES;
-    if (card1.fill == card2.fill && card2.fill == card3.fill) match = YES;
-    if (card1.fill != card2.fill && card2.fill != card3.fill && card1.fill != card3.fill) match = YES;
+    
+    BOOL numberMatch = [self isMatchOnProperty1: card1.count property2: card2.count property3: card3.count];
+    BOOL shapeMatch = [self isMatchOnProperty1: card1.shape property2: card2.shape property3: card3.shape];
+    BOOL colorMatch = [self isMatchOnProperty1: card1.color property2: card2.color property3: card3.color];
+    BOOL fillMatch = [self isMatchOnProperty1: card1.fill property2: card2.fill property3: card3.fill];
+
+    return (numberMatch || shapeMatch || colorMatch || fillMatch);
 }
+
+#define SELECT_COST 1
+#define MATCH_SCORE 5
+#define MATCH_BONUS_MULTIPLIER 4 // N/A right now
+#define MISMATCH_PENALTY 2
+
 
 - (void)selectCardAtIndex:(NSUInteger)index
 {
@@ -60,9 +72,15 @@
     if (cardIsValid) {
         [self.currentlySelectedCards addObject:currentCard];
         
+        self.totalScore -= SELECT_COST;
+        
         if ([self.currentlySelectedCards count] == 3) {
             // compute score
-            //<#statements#>
+            if ([self isMatch]) {
+                self.totalScore += MATCH_SCORE;
+            } else {
+                self.totalScore -= MISMATCH_PENALTY;
+            }
         }
     }
     
