@@ -78,11 +78,19 @@
             // compute score
             if ([self isMatch]) {
                 self.totalScore += MATCH_SCORE;
+                [self.currentlySelectedCards removeAllObjects];
+
             } else {
                 self.totalScore -= MISMATCH_PENALTY;
+                // in this case, the last card to be selected remains selected and the other cards are set deselected in the UI and removed from currentlySelectedCards.
+                [self.currentlySelectedCards removeObjectAtIndex:0];
+                [self.currentlySelectedCards removeObjectAtIndex:0];
             }
-        }
-    }
+        }// else do nothing
+    }// else do nothing
+    
+    // 1/8/14 - We need to maintain gameCards (wherever that's stored).
+    // Properly set the playable property.
     
     // Maintain currentlySelectedCards array
     // We decide that for no match, the last card to be selected remains selected and the other cards are set deselected in the UI and removed from currentlySelectedCards.
