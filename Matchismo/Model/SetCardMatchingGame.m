@@ -65,6 +65,9 @@
 
 - (void)selectCardAtIndex:(NSUInteger)index
 {
+    if (self.gameCards) {
+        printf("it is, infact self.gameCards");
+    }
     Card *currentCard = [self cardAtIndex:index];
     
     BOOL cardIsValid = [currentCard isPlayable] && ![self.currentlySelectedCards containsObject:currentCard];
@@ -87,6 +90,9 @@
                 [self.currentlySelectedCards removeObjectAtIndex:0];
             }
         }// else do nothing
+        
+
+        
     }// else do nothing
     
     // 1/8/14 - We need to maintain gameCards (wherever that's stored).
