@@ -15,15 +15,17 @@
 #import "CardGameViewController.h"
 
 @interface MatchismoViewController ()
-
+@property (strong, nonatomic) UIImage *cardBackImage;
 @end
 
 @implementation MatchismoViewController
 
-//- (void)viewDidLoad
-//{
-//    [self updateUI];
-//}
+- (void)viewDidLoad
+{
+    self.cardBackImage = [UIImage imageNamed:@"Bicycle-Rider-Backs.gif"];
+    [self updateUI];
+    [self makeAllCardsHaveCardBackImage];
+}
 
 - (CardMatchingGame *) game
 {
@@ -32,9 +34,41 @@
     return self.game;
 }
 
+
+- (IBAction)newGame:(UIButton *)sender
+{
+    self.game = 0;
+    self.flipsLabel.text = @"Flips: 0";
+    [self makeAllCardsHaveCardBackImage];
+    [self updateUI];
+}
+
 - (void)updateUI
 {
+    [super updateUI];
+    // Compute and set the UI state for each cardButton.
+    for (UIButton *cardButton in self.cardButtons) {
+        Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+        [cardButton setTitle:card.contents forState:UIControlStateSelected];
+    	[cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
+        BOOL beforeChange = cardButton.selected;
+        // selected, enabled, and alpha are visible UI states set to match the model's state.
+        cardButton.selected = card.isFaceUp;
+        cardButton.enabled = card.playable;
+        cardButton.alpha = card.playable ? 1.0 : 0.3;
+        BOOL afterChange = cardButton.selected;
+        if (beforeChange != afterChange)
+        {
+            [self displayCardImage:cardButton isFaceUp:card.isFaceUp];
+        }
+    }
 
+}
+
+- (void)makeAllCardsHaveCardBackImage{
+    for (UIButton *cardButton in self.cardButtons) {
+        [cardButton setImage:self.cardBackImage forState:UIControlStateNormal];
+    }
 }
 
 - (IBAction)changeGameType:(id)sender {
@@ -43,15 +77,24 @@
 
 - (IBAction)flipCard:(UIButton *)sender
 {
-//    Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:sender]];
+    Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:sender]];
 	[self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
+    [self displayCardImage:sender isFaceUp:card.isFaceUp];
     [self updateUI];
 }
 
-- (IBAction)newGame:(UIButton *)sender
+
+
+- (void)displayCardImage:(UIButton *) cardButton isFaceUp:(BOOL) faceUp
 {
-    self.game = 0;
-    [self updateUI];
+    if (!faceUp) {
+        [cardButton setImage:self.cardBackImage forState:UIControlStateNormal];// if face down
+    } else {
+        [cardButton setImage:nil forState:UIControlStateNormal];// if face up
+        
+    }
 }
+
+
 
 @end
