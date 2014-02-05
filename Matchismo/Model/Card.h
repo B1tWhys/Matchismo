@@ -10,7 +10,7 @@
 
 @interface Card : NSObject
 
-@property (strong, nonatomic) NSString *contents;
+@property (strong, nonatomic) NSString *contents; // TODO 2/5/14 Move down to PlayingCard
 @property (nonatomic, getter=isFaceUp) BOOL faceUp;
 @property (nonatomic, getter=isPlayable) BOOL playable;
 

@@ -9,7 +9,7 @@
 #import "Card.h"
 
 @interface PlayingCard : Card
-
+// TODO 2/5/14 move contents property from superclass to here
 @property (strong, nonatomic)NSString *suit;
 @property (nonatomic)NSUInteger rank;
 

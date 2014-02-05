@@ -29,8 +29,7 @@
 
 - (id)initWithCount:(int)count shape:(int)shape fill:(int)fill color:(int)color
 {
-    if (self = [super init])
-    {
+    if (self = [super init]) {
         self.count = count;
         self.shape = shape;
         self.fill = fill;
