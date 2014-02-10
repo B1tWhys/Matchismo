@@ -7,6 +7,7 @@
 //
 
 #import "CardGameViewController.h"
+#import "SetCardMatchingGame.h"
 #import "SetCard.h"
 
 @interface SetGameViewController : CardGameViewController

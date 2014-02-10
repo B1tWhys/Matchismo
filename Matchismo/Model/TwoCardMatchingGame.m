@@ -7,6 +7,7 @@
 //
 
 #import "TwoCardMatchingGame.h"
+#import "PlayingCard.h"
 @interface TwoCardMatchingGame()
 //@property (strong, nonatomic) NSMutableArray *gameCards;
 @property (nonatomic, readwrite) int totalScore;
@@ -28,7 +29,7 @@
 
 - (void)flipCardAtIndex:(NSUInteger)index
 {
-    Card *card = [self cardAtIndex:index];
+    PlayingCard *card = (PlayingCard *) [self cardAtIndex:index];
     [card flip];
     if (card.isPlayable && card.isFaceUp) {
         self.flipCount++;
@@ -36,7 +37,7 @@
         int lastTwoCardsFlippedScore = -FLIP_COST;
         self.flipResults = @"Flip a card!";
         // see if flipping this card up creates a match
-        for (Card *otherCard in [self gameCards]) {
+        for (PlayingCard *otherCard in [self gameCards]) {
             if ((otherCard != card) && otherCard.isFaceUp && otherCard.isPlayable) {
                 int matchScore = [card match:@[otherCard]];
                 if (matchScore) {

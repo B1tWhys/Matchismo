@@ -35,7 +35,8 @@
             int x = 1; // BREAKPOINT opportunity
             x = x;
         }
-        else NSLog(@"%@ - index: %d", testCard.contents, cardIndex);
+//        else NSLog(@"%@ - index: %d", testCard.contents, cardIndex);
+        else NSLog(@"%@ - index: %d", @"card contents not available", cardIndex);
     }
 }
 

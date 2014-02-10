@@ -27,14 +27,6 @@
     [self makeAllCardsHaveCardBackImage];
 }
 
-- (CardMatchingGame *) game
-{
-    if (!self.game) {
-    }
-    return self.game;
-}
-
-
 - (IBAction)newGame:(UIButton *)sender
 {
     self.game = 0;
@@ -48,7 +40,7 @@
     [super updateUI];
     // Compute and set the UI state for each cardButton.
     for (UIButton *cardButton in self.cardButtons) {
-        Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+        PlayingCard *card = (PlayingCard *)[self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
         [cardButton setTitle:card.contents forState:UIControlStateSelected];
     	[cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
         BOOL beforeChange = cardButton.selected;
