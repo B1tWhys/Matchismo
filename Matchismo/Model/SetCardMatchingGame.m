@@ -21,6 +21,11 @@
 - (id)initWithCardCount:(NSUInteger)cardCount usingDeck:(Deck *)deck
 {
     self = [super initWithCardCount:cardCount usingDeck:deck];
+/*
+    for (i=0, i < 24, i++) {
+        // Select a prevoiusly unselected random card from the deck and associate it with a card button.
+    }
+*/    
     return (SetCardMatchingGame *) self;
 }
 

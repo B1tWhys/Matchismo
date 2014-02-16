@@ -19,11 +19,11 @@
 we need a setGame class, which will do the logic for a set game here, we will put the initiator in the view did load method. While this is different from the CardGameViewControler, i think it is right, because there, we basicly turned the setter into the initializer, instead of just initilizing the object right when matchismo loads
 */
 
- @synthesize game = _game;
+// @synthesize game = _game;
 
 - (SetCardMatchingGame *) game
 {
-    if (!_game) {
+    if (!self.game) {
         SetCardDeck *scDeck = [[SetCardDeck alloc] init];
         //        [scDeck checkDeck];
         self.game = [[SetCardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:scDeck];
