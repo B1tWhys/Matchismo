@@ -35,6 +35,16 @@
     [self updateUI];
 }
 
+- (TwoCardMatchingGame *) game
+{
+    if (!super.game) {
+        PlayingCardDeck *pcdeck = [[PlayingCardDeck alloc] init];
+        //        [pcdeck checkDeck];
+        super.game = [[TwoCardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:pcdeck];
+    }
+    return (TwoCardMatchingGame *) super.game;
+}
+
 - (void)updateUI
 {
     [super updateUI];
@@ -54,7 +64,6 @@
             [self displayCardImage:cardButton isFaceUp:card.isFaceUp];
         }
     }
-
 }
 
 - (void)makeAllCardsHaveCardBackImage{
@@ -75,8 +84,6 @@
     [self updateUI];
 }
 
-
-
 - (void)displayCardImage:(UIButton *) cardButton isFaceUp:(BOOL) faceUp
 {
     if (!faceUp) {
@@ -86,7 +93,5 @@
         
     }
 }
-
-
 
 @end

@@ -26,16 +26,6 @@
     // not implemented here, but rather in the subclasses
 }
 
-- (CardMatchingGame *) game
-{
-    if (!_game) {
-        PlayingCardDeck *pcdeck = [[PlayingCardDeck alloc] init];
-//        [pcdeck checkDeck];
-        _game = [[TwoCardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:pcdeck];
-    }
-    return _game;
-}
-
 - (void)updateUI
 {
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.totalScore];

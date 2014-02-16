@@ -11,7 +11,7 @@
 #import "SetCardDeck.h"
 
 @interface SetGameViewController ()
-@property (nonatomic, strong) SetCardMatchingGame *game;
+//@property (nonatomic, strong) SetCardMatchingGame *game;
 @end
 
 @implementation SetGameViewController
@@ -23,12 +23,12 @@ we need a setGame class, which will do the logic for a set game here, we will pu
 
 - (SetCardMatchingGame *) game
 {
-    if (!self.game) {
+    if (!super.game) {
         SetCardDeck *scDeck = [[SetCardDeck alloc] init];
         //        [scDeck checkDeck];
-        self.game = [[SetCardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:scDeck];
+        super.game = [[SetCardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:scDeck];
     }
-    return self.game;
+    return (SetCardMatchingGame *) super.game;
 }
 
 + (NSString *)getCardString:(SetCard *)card
@@ -49,8 +49,7 @@ we need a setGame class, which will do the logic for a set game here, we will pu
 - (IBAction)setCard:(UIButton *)sender
 {
     [self.game cardAtIndex:[self.cardButtons indexOfObject:sender]];
-    // we need to call [self updateUI]; from here when it is implemented
-}
+    [self updateUI];}
 
 - (void)viewDidLoad
 {

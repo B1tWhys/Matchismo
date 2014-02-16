@@ -14,6 +14,7 @@
 - (void)updateUI;
 - (IBAction)newGame:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
-@property (strong, nonatomic) TwoCardMatchingGame *game;
+@property (strong, nonatomic) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @end
+mplament
