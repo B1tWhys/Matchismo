@@ -27,7 +27,7 @@
     [self makeAllCardsHaveCardBackImage];
 }
 
-- (IBAction)newGame:(UIButton *)sender
+- (IBAction)newGame
 {
     self.game = 0;
     self.flipsLabel.text = @"Flips: 0";
@@ -70,10 +70,6 @@
     for (UIButton *cardButton in self.cardButtons) {
         [cardButton setImage:self.cardBackImage forState:UIControlStateNormal];
     }
-}
-
-- (IBAction)changeGameType:(id)sender {
-    [self newGame:sender];
 }
 
 - (IBAction)flipCard:(UIButton *)sender

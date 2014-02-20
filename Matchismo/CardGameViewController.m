@@ -21,25 +21,10 @@
 
 @implementation CardGameViewController
 
-- (void) newGame:(UIButton *)sender
-{
-    // not implemented here, but rather in the subclasses
-}
-
 - (void)updateUI
 {
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.totalScore];
     self.flipResult.text = [self.game flipResults];
     self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.game.flipCount];
 }
-
-- (IBAction)changeGameType:(id)sender {
-    [self newGame:sender];
-}
-
-
-
-
-
-
 @end
