@@ -60,6 +60,13 @@
 */
 }
 
+- (void)logCard
+{
+    NSString *shapeString = @[@"X", @"square", @"circle", @"triangle"][self.shape];
+    NSString *colorString = @[@"X", @"red", @"green", @"blue"][self.color];
+    NSString *fillString = @[@"X", @"none", @"shaded", @"solid"][self.fill];
+    NSLog(@"%i  %@  %@  %@  ", self.count, colorString, shapeString, fillString);
+}
 
 @end
 

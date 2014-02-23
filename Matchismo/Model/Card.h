@@ -19,4 +19,6 @@
 
 - (void) flip;
 
+- (void) logCard;
+
 @end

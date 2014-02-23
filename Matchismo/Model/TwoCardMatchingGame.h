@@ -15,16 +15,4 @@
 @property (nonatomic, readonly) NSString *flipResults;
 @property (nonatomic, readonly) int flipCount;
 
-// HUH? Apparently, none of the below methods need to be declared
-//      public in this subclass even though there are overriding
-//      implementations for initWithCardCount and flipCardAtIndex
-//      in TwoCardMatchingGame.m.
-
-// designated initializer
-//- (id)initWithCardCount:(NSUInteger)cardCount usingDeck:(Deck *)deck;
-
-//- (void)flipCardAtIndex:(NSUInteger)index;
-
-//- (Card *)cardAtIndex:(NSUInteger)index;
-
 @end

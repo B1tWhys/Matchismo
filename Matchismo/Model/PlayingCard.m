@@ -96,4 +96,8 @@
 	}
 }
 
+- (void)logCard
+{
+}
+
 @end

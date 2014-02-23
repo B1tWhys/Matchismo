@@ -116,6 +116,8 @@
         // fill - 0 = undefined, 1 = none, 2 = shaded, 3 = solid
         // color - 0 = undefined, 1 = red, 2 = green, 3 = blue
         
+        [card logCard];
+        
         NSString *shapeCharacter = [self getDisplayCharacter:card.shape];
         NSString *displayString = [self getDisplayString:shapeCharacter shapeCount:card.count];
         UIColor *color = [self getDisplayColor:card.color];
