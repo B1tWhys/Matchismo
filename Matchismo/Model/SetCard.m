@@ -14,8 +14,10 @@
 @property (nonatomic)int color; // 0 = undefined, 1 = red, 2 = green, 3 = blue
 @end
 
-@implementation SetCard
+static NSInteger logCardCount;
 
+
+@implementation SetCard
 -(id)init
 {
     if (self = [super init]) {
@@ -62,10 +64,11 @@
 
 - (void)logCard
 {
+    logCardCount += 1;
     NSString *shapeString = @[@"X", @"square", @"circle", @"triangle"][self.shape];
     NSString *colorString = @[@"X", @"red", @"green", @"blue"][self.color];
     NSString *fillString = @[@"X", @"none", @"shaded", @"solid"][self.fill];
-    NSLog(@"%i  %@  %@  %@  ", self.count, colorString, shapeString, fillString);
+    NSLog(@"%i  %i  %@  %@  %@  ", logCardCount, self.count, colorString, shapeString, fillString);
 }
 
 @end

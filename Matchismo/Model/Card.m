@@ -25,4 +25,8 @@
     _faceUp = !_faceUp;
 }
 
+- (void)logCard
+{
+}
+
 @end
