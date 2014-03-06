@@ -66,7 +66,7 @@
         randomCard = self.deckCards[index];
         [self.deckCards removeObjectAtIndex:index];
     }
-    [randomCard logCard];
+//     [randomCard logCard];
     return randomCard;
 }
 

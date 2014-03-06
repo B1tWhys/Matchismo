@@ -38,8 +38,9 @@
 
 - (IBAction)setCard:(UIButton *)sender
 {
-    [self.game cardAtIndex:[self.cardButtons indexOfObject:sender]];
-    [self updateUI];}
+    [(SetCardMatchingGame *) super.game selectCardAtIndex: [self.cardButtons indexOfObject:sender]];
+    [self updateUI];
+}
 
 - (void)viewDidLoad
 {
@@ -51,7 +52,7 @@
 {
     NSString *returnShape;
     switch (shapeCode) {
-        case 1: returnShape = @"\uFFED"; break; // has funkey fill: ◼
+        case 1: returnShape = @"■"; break; // \u2583 \u2588 \uFFED, has funky fill: ◼
         case 2: returnShape = @"\u25CF"; break; // \u25EF, ●
         case 3: returnShape = @"\u25B2"; break; // ▲
         default: returnShape = @"!"; break;
@@ -76,18 +77,10 @@
 {
     float alpha;
     switch (fillCode) {
-        case 1:
-            alpha = 0.0;
-            break;
-        case 2:
-            alpha = 0.4;
-            break;
-        case 3:
-            alpha = 1.0;
-            break;
-        default:
-            alpha = -1.0;
-            break;
+        case 1: alpha = 0.0; break;
+        case 2: alpha = 0.4; break;
+        case 3: alpha = 1.0; break;
+        default: alpha = -1.0; break;
     }
     UIColor *returnColor = [originalColor colorWithAlphaComponent:alpha];
     return returnColor;
@@ -107,7 +100,7 @@
     float fontSize;
     switch (shapeCode) {
         case 1: fontSize = 18.0; break; // ◼
-        case 2: fontSize = 25.0; break; // ●
+        case 2: fontSize = 30.0; break; // ●
         case 3: fontSize = 18.0; break; // ▲
         default: fontSize = 30.0; break;
     }
@@ -129,7 +122,7 @@
         // fill - 0 = undefined, 1 = none, 2 = shaded, 3 = solid
         // color - 0 = undefined, 1 = red, 2 = green, 3 = blue
         
-        // [card logCard];
+//         [card logCard];
         
         NSString *shapeCharacter = [self getDisplayCharacter:card.shape];
         NSString *displayString = [self getDisplayString:shapeCharacter shapeCount:card.count];
