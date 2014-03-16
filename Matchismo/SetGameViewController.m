@@ -68,7 +68,7 @@
         case 1: color = [UIColor redColor]; break;
         case 2: color = [UIColor greenColor]; break;
         case 3: color = [UIColor blueColor]; break;
-        default: color = color = [UIColor magentaColor]; break;
+        default: color = [UIColor magentaColor]; break;
     }
     return color;
 }
@@ -139,7 +139,11 @@
                                                                                     NSForegroundColorAttributeName: colorWithAlpha}];
         [cardButton setAttributedTitle:cardText forState:UIControlStateNormal];
 
-    [cardButton setBackgroundImage: forState:<#(UIControlState)#>
+        // LEFT OFF HERE 3/16/14
+//        CIColor *bckgndImageColor = [yellow rgb: 242,236,63]
+//        CIImage *bckgndImage0 = [CIImage imageWithColor:bckgndImageColor];
+//        UIImage *bckgndImage = [UIImage imageWith];
+//    [cardButton setBackgroundImage: forState:<#(UIControlState)#>
     }
     
 //    for (id selectedCard in self.game.currentlySelectedCards)

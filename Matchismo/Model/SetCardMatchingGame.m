@@ -66,8 +66,8 @@
 
 - (void)selectCardAtIndex:(NSUInteger)index
 {
-    int x = 0;
     Card *currentCard = [self cardAtIndex:index];
+    [currentCard logCard];
     
     BOOL cardIsValid = [currentCard isPlayable] && ![self.currentlySelectedCards containsObject:currentCard];
     

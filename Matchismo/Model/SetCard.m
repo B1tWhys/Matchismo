@@ -14,7 +14,7 @@
 @property (nonatomic)int color; // 0 = undefined, 1 = red, 2 = green, 3 = blue
 @end
 
-static NSInteger logCardCount;
+static int logCardCount;
 
 
 @implementation SetCard
