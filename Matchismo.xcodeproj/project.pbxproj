@@ -31,6 +31,7 @@
 		D450192D18513EBE00FCBCAA /* SetCardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = D450192C18513EBE00FCBCAA /* SetCardMatchingGame.m */; };
 		D45318351824BA4400A1EB27 /* UISetCardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D45318341824BA4400A1EB27 /* UISetCardButton.m */; };
 		D48559A2181889D300A13AB4 /* SetCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = D48559A1181889D300A13AB4 /* SetCardDeck.m */; };
+		D4FB7B4918D11FC400420F45 /* BGColor1.png in Resources */ = {isa = PBXBuildFile; fileRef = D4FB7B4818D11FC400420F45 /* BGColor1.png */; };
 		D4FFEC3B175F87AA00762F76 /* set.tif in Resources */ = {isa = PBXBuildFile; fileRef = D4FFEC3A175F87AA00762F76 /* set.tif */; };
 		D4FFEC3D175F890900762F76 /* Machismo.tif in Resources */ = {isa = PBXBuildFile; fileRef = D4FFEC3C175F890900762F76 /* Machismo.tif */; };
 		D4FFEC3F175F895B00762F76 /* Bicycle-Rider-Backs.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4FFEC3E175F895B00762F76 /* Bicycle-Rider-Backs.gif */; };
@@ -81,6 +82,7 @@
 		D45318341824BA4400A1EB27 /* UISetCardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISetCardButton.m; path = View/UISetCardButton.m; sourceTree = "<group>"; };
 		D48559A0181889D300A13AB4 /* SetCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCardDeck.h; sourceTree = "<group>"; };
 		D48559A1181889D300A13AB4 /* SetCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCardDeck.m; sourceTree = "<group>"; };
+		D4FB7B4818D11FC400420F45 /* BGColor1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGColor1.png; sourceTree = "<group>"; };
 		D4FFEC3A175F87AA00762F76 /* set.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = set.tif; sourceTree = "<group>"; };
 		D4FFEC3C175F890900762F76 /* Machismo.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Machismo.tif; sourceTree = "<group>"; };
 		D4FFEC3E175F895B00762F76 /* Bicycle-Rider-Backs.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Bicycle-Rider-Backs.gif"; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		D40C4E011728AC0A00A14ABB /* images */ = {
 			isa = PBXGroup;
 			children = (
+				D4FB7B4818D11FC400420F45 /* BGColor1.png */,
 				D4FFEC42175F931100762F76 /* Settings.tif */,
 				D4FFEC40175F8BA300762F76 /* Scores.tif */,
 				D4FFEC3E175F895B00762F76 /* Bicycle-Rider-Backs.gif */,
@@ -266,6 +269,7 @@
 				D433C80216D05575000EC432 /* InfoPlist.strings in Resources */,
 				D433C80A16D05575000EC432 /* Default.png in Resources */,
 				D433C80C16D05575000EC432 /* Default@2x.png in Resources */,
+				D4FB7B4918D11FC400420F45 /* BGColor1.png in Resources */,
 				D433C80E16D05575000EC432 /* Default-568h@2x.png in Resources */,
 				D433C81116D05575000EC432 /* MainStoryboard.storyboard in Resources */,
 				D4FFEC3B175F87AA00762F76 /* set.tif in Resources */,

@@ -111,12 +111,10 @@
 - (void)updateUI
 {
     [super updateUI];
+    
     // Compute and set the UI state for each cardButton.
     for (UIButton *cardButton in self.cardButtons) {
         SetCard *card = (SetCard *) [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-        // get the count, shape, fill & color properties for the card and formulate
-        // the attributed string for dispaly. TODO 2/15/14
-
         // count - 0 = undefined, 1-3 are valid values
         // shape - 0 = undefined, 1 = square, 2 = circle, 3 = triangle
         // fill - 0 = undefined, 1 = none, 2 = shaded, 3 = solid
@@ -131,8 +129,7 @@
         float fontSize = [self getFontSize:card.shape];
         UIFont *fontWithSize = [UIFont fontWithName:@"Helvetica" size: fontSize];
         NSNumber *strokeWidth = [NSNumber numberWithFloat: -3.0];
-        
-        
+    
         
         
         NSAttributedString *cardText = [[NSAttributedString alloc] initWithString:displayString
@@ -142,7 +139,13 @@
                                                                                     NSForegroundColorAttributeName: colorWithAlpha}];
         [cardButton setAttributedTitle:cardText forState:UIControlStateNormal];
 
+    [cardButton setBackgroundImage: forState:<#(UIControlState)#>
     }
+    
+//    for (id selectedCard in self.game.currentlySelectedCards)
+//    {
+//        
+//    }
 }
 
 @end

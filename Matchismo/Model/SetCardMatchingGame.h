@@ -11,5 +11,5 @@
 @interface SetCardMatchingGame : CardMatchingGame
 
 - (void)selectCardAtIndex:(NSUInteger)index;
-
+@property (nonatomic, strong, readonly) NSMutableArray *currentlySelectedCards;
 @end
