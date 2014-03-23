@@ -12,9 +12,10 @@
 		63C064621735BBFE001DF98D /* TwoCardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C064601735BBFE001DF98D /* TwoCardMatchingGame.m */; };
 		63C7E9AF175FDCBA00A90D54 /* MatchismoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C7E9AE175FDCBA00A90D54 /* MatchismoViewController.m */; };
 		63C7E9B2175FDCDD00A90D54 /* SetGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C7E9B1175FDCDD00A90D54 /* SetGameViewController.m */; };
+		63D12A9718DF9D9700F1C103 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D12A9618DF9D9700F1C103 /* CoreImage.framework */; };
+		63D12A9818DF9E6B00F1C103 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D433C7FB16D05575000EC432 /* CoreGraphics.framework */; };
 		D433C7F816D05575000EC432 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D433C7F716D05575000EC432 /* UIKit.framework */; };
 		D433C7FA16D05575000EC432 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D433C7F916D05575000EC432 /* Foundation.framework */; };
-		D433C7FC16D05575000EC432 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D433C7FB16D05575000EC432 /* CoreGraphics.framework */; };
 		D433C80216D05575000EC432 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D433C80016D05575000EC432 /* InfoPlist.strings */; };
 		D433C80416D05575000EC432 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D433C80316D05575000EC432 /* main.m */; };
 		D433C80816D05575000EC432 /* CardGameAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D433C80716D05575000EC432 /* CardGameAppDelegate.m */; };
@@ -50,6 +51,8 @@
 		63C7E9AE175FDCBA00A90D54 /* MatchismoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchismoViewController.m; sourceTree = "<group>"; };
 		63C7E9B0175FDCDD00A90D54 /* SetGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetGameViewController.h; sourceTree = "<group>"; };
 		63C7E9B1175FDCDD00A90D54 /* SetGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetGameViewController.m; sourceTree = "<group>"; };
+		63D12A9418DF9D3D00F1C103 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		63D12A9618DF9D9700F1C103 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		D433C7F416D05575000EC432 /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D433C7F716D05575000EC432 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D433C7F916D05575000EC432 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -95,9 +98,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63D12A9818DF9E6B00F1C103 /* CoreGraphics.framework in Frameworks */,
+				63D12A9718DF9D9700F1C103 /* CoreImage.framework in Frameworks */,
 				D433C7F816D05575000EC432 /* UIKit.framework in Frameworks */,
 				D433C7FA16D05575000EC432 /* Foundation.framework in Frameworks */,
-				D433C7FC16D05575000EC432 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +141,8 @@
 		D433C7F616D05575000EC432 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63D12A9618DF9D9700F1C103 /* CoreImage.framework */,
+				63D12A9418DF9D3D00F1C103 /* QuartzCore.framework */,
 				D433C7F716D05575000EC432 /* UIKit.framework */,
 				D433C7F916D05575000EC432 /* Foundation.framework */,
 				D433C7FB16D05575000EC432 /* CoreGraphics.framework */,

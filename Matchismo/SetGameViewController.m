@@ -9,6 +9,9 @@
 #import "SetGameViewController.h"
 #import "SetCardMatchingGame.h"
 #import "SetCardDeck.h"
+//#import "<QuartzCore/CoreAnimation.h>"
+#import "CoreImage/CIColor.h"
+#import "CoreImage/CIImage.h"
 
 @interface SetGameViewController ()
 @end
@@ -110,15 +113,24 @@
 
 - (void)updateUI
 {
-    [super updateUI];
+    // count - 0 = undefined, 1-3 are valid values
+    // shape - 0 = undefined, 1 = square, 2 = circle, 3 = triangle
+    // fill - 0 = undefined, 1 = none, 2 = shaded, 3 = solid
+    // color - 0 = undefined, 1 = red, 2 = green, 3 = blue
     
+    [super updateUI];
+
+    CIColor *selectecCardbckgndImageColor = [CIColor colorWithRed:242.0 green:236.0 blue:63];
+    CIImage *selectecCardbckgndCIImage = [CIImage imageWithColor:selectecCardbckgndImageColor];
+    UIImage *selectecCardbckgndUIImage = [UIImage imageWithCIImage:selectecCardbckgndCIImage];
+    
+    // Stopped here on 3/23/14
+    // Pausing at the breakpoint here reveals that the _cardButtons is an NSArray of 24 elelments (as expected),
+    // but _card is nil for each element. It should be a pointer to the card associated with the cardButton.
+
     // Compute and set the UI state for each cardButton.
     for (UIButton *cardButton in self.cardButtons) {
         SetCard *card = (SetCard *) [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-        // count - 0 = undefined, 1-3 are valid values
-        // shape - 0 = undefined, 1 = square, 2 = circle, 3 = triangle
-        // fill - 0 = undefined, 1 = none, 2 = shaded, 3 = solid
-        // color - 0 = undefined, 1 = red, 2 = green, 3 = blue
         
 //         [card logCard];
         
@@ -139,17 +151,14 @@
                                                                                     NSForegroundColorAttributeName: colorWithAlpha}];
         [cardButton setAttributedTitle:cardText forState:UIControlStateNormal];
 
-        // LEFT OFF HERE 3/16/14
-//        CIColor *bckgndImageColor = [yellow rgb: 242,236,63]
-//        CIImage *bckgndImage0 = [CIImage imageWithColor:bckgndImageColor];
-//        UIImage *bckgndImage = [UIImage imageWith];
-//    [cardButton setBackgroundImage: forState:<#(UIControlState)#>
+        // If the card associated with this cardButton is in the list of currentlySelectedCards,
+        // then we'll set the background of the cardButton to illustrate this.
+        if ([((SetCardMatchingGame *) self.game).currentlySelectedCards containsObject:card]) {
+            [cardButton setBackgroundImage:selectecCardbckgndUIImage forState:UIControlStateNormal];
+        }
+
     }
     
-//    for (id selectedCard in self.game.currentlySelectedCards)
-//    {
-//        
-//    }
 }
 
 @end
