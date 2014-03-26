@@ -130,7 +130,8 @@
 
     // Compute and set the UI state for each cardButton.
     for (UIButton *cardButton in self.cardButtons) {
-        SetCard *card = (SetCard *) [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+//      PlayingCard *card = (PlayingCard *)[self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]]; // This is from UpdateUI in MatchismoViewController
+        SetCard *card =        (SetCard *) [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
         
 //         [card logCard];
         
@@ -153,7 +154,10 @@
 
         // If the card associated with this cardButton is in the list of currentlySelectedCards,
         // then we'll set the background of the cardButton to illustrate this.
+// 3/26/14 Notes: We left off here. We are surprised to find that the cardButton here has a nil value for the _card property.
+// So we investigated that - search the project for "Yipes!"
         if ([((SetCardMatchingGame *) self.game).currentlySelectedCards containsObject:card]) {
+// Most importantly, we learned that we are getting to this line of code when the user selects a button in the UI.
             [cardButton setBackgroundImage:selectecCardbckgndUIImage forState:UIControlStateNormal];
         }
 

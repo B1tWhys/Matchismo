@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "SetCard.h"
 
+// Yipes! We're not sure why we created this class. Maybe it has something to do with
+// the fact that the button has an attributedString instead of a normal string.
+
 @interface UISetCardButton : UIButton
 
 @property (strong, nonatomic) SetCard *card;

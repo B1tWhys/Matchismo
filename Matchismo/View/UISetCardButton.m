@@ -20,6 +20,7 @@
     return self;
 }
 
+// // Yipes! See comment in the .h file.
 - (void)setPropertyCard:(SetCard *)card
 {
     _card = card;
