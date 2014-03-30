@@ -120,7 +120,7 @@
     
     [super updateUI];
 
-    CIColor *selectecCardbckgndImageColor = [CIColor colorWithRed:242.0 green:236.0 blue:63];
+    CIColor *selectecCardbckgndImageColor = [CIColor colorWithRed:0.0 green:0.0 blue:0.0];
     CIImage *selectecCardbckgndCIImage = [CIImage imageWithColor:selectecCardbckgndImageColor];
     UIImage *selectecCardbckgndUIImage = [UIImage imageWithCIImage:selectecCardbckgndCIImage];
     
@@ -151,14 +151,23 @@
                                                                                     NSStrokeColorAttributeName: color,
                                                                                     NSForegroundColorAttributeName: colorWithAlpha}];
         [cardButton setAttributedTitle:cardText forState:UIControlStateNormal];
+        [cardButton setAttributedTitle:cardText forState:UIControlStateSelected];
+        
 
         // If the card associated with this cardButton is in the list of currentlySelectedCards,
         // then we'll set the background of the cardButton to illustrate this.
 // 3/26/14 Notes: We left off here. We are surprised to find that the cardButton here has a nil value for the _card property.
 // So we investigated that - search the project for "Yipes!"
         if ([((SetCardMatchingGame *) self.game).currentlySelectedCards containsObject:card]) {
+            
+            cardButton.selected = true;
+            [cardButton setBackgroundImage:selectecCardbckgndUIImage forState:UIControlStateSelected];
+            
 // Most importantly, we learned that we are getting to this line of code when the user selects a button in the UI.
-            [cardButton setBackgroundImage:selectecCardbckgndUIImage forState:UIControlStateNormal];
+//            [cardButton setBackgroundImage:selectecCardbckgndUIImage forState:UIControlStateNormal];
+        } else {
+            cardButton.selected = false;
+            [cardButton setBackgroundImage:selectecCardbckgndUIImage forState:UIControlStateSelected];
         }
 
     }
