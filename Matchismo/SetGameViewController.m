@@ -14,6 +14,7 @@
 #import "CoreImage/CIImage.h"
 
 @interface SetGameViewController ()
+@property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 @end
 
 @implementation SetGameViewController
@@ -119,21 +120,13 @@
     // color - 0 = undefined, 1 = red, 2 = green, 3 = blue
     
     [super updateUI];
-
-    CIColor *selectecCardbckgndImageColor = [CIColor colorWithRed:0.0 green:0.0 blue:0.0];
-    CIImage *selectecCardbckgndCIImage = [CIImage imageWithColor:selectecCardbckgndImageColor];
-    UIImage *selectecCardbckgndUIImage = [UIImage imageWithCIImage:selectecCardbckgndCIImage];
     
-    // Stopped here on 3/23/14
-    // Pausing at the breakpoint here reveals that the _cardButtons is an NSArray of 24 elelments (as expected),
-    // but _card is nil for each element. It should be a pointer to the card associated with the cardButton.
-
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %i", self.game.totalScore];
+    
     // Compute and set the UI state for each cardButton.
     for (UIButton *cardButton in self.cardButtons) {
-//      PlayingCard *card = (PlayingCard *)[self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]]; // This is from UpdateUI in MatchismoViewController
-        SetCard *card =        (SetCard *) [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+        SetCard *card = (SetCard *) [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
         
-//         [card logCard];
         
         NSString *shapeCharacter = [self getDisplayCharacter:card.shape];
         NSString *displayString = [self getDisplayString:shapeCharacter shapeCount:card.count];
@@ -144,6 +137,9 @@
         NSNumber *strokeWidth = [NSNumber numberWithFloat: -3.0];
     
         
+        if (((Card *)card).isPlayable == false) {
+            displayString = @"";
+        }
         
         NSAttributedString *cardText = [[NSAttributedString alloc] initWithString:displayString
                                                                        attributes:@{NSFontAttributeName: fontWithSize,
@@ -152,24 +148,12 @@
                                                                                     NSForegroundColorAttributeName: colorWithAlpha}];
         [cardButton setAttributedTitle:cardText forState:UIControlStateNormal];
         [cardButton setAttributedTitle:cardText forState:UIControlStateSelected];
+
         
 
         // If the card associated with this cardButton is in the list of currentlySelectedCards,
         // then we'll set the background of the cardButton to illustrate this.
-// 3/26/14 Notes: We left off here. We are surprised to find that the cardButton here has a nil value for the _card property.
-// So we investigated that - search the project for "Yipes!"
-        if ([((SetCardMatchingGame *) self.game).currentlySelectedCards containsObject:card]) {
-            
-            cardButton.selected = true;
-            [cardButton setBackgroundImage:selectecCardbckgndUIImage forState:UIControlStateSelected];
-            
-// Most importantly, we learned that we are getting to this line of code when the user selects a button in the UI.
-//            [cardButton setBackgroundImage:selectecCardbckgndUIImage forState:UIControlStateNormal];
-        } else {
-            cardButton.selected = false;
-            [cardButton setBackgroundImage:selectecCardbckgndUIImage forState:UIControlStateSelected];
-        }
-
+        cardButton.selected = [((SetCardMatchingGame *) self.game).currentlySelectedCards containsObject:card];
     }
     
 }

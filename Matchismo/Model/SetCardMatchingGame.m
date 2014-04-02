@@ -55,7 +55,7 @@
     BOOL colorMatch = [self isMatchOnProperty1: card1.color property2: card2.color property3: card3.color];
     BOOL fillMatch = [self isMatchOnProperty1: card1.fill property2: card2.fill property3: card3.fill];
 
-    return (numberMatch || shapeMatch || colorMatch || fillMatch);
+    return (numberMatch | shapeMatch | colorMatch | fillMatch);
 }
 
 #define SELECT_COST 1
@@ -80,14 +80,15 @@
             // compute score
             if ([self isMatch]) {
                 self.totalScore += MATCH_SCORE;
-                [self.currentlySelectedCards removeAllObjects];
-
-            } else {
+                for (Card *selectedCard in self.currentlySelectedCards) {
+                    selectedCard.playable = false;
+                }
+            } else { // there is no match
                 self.totalScore -= MISMATCH_PENALTY;
                 // in this case, the last card to be selected remains selected and the other cards are set deselected in the UI and removed from currentlySelectedCards.
-                [self.currentlySelectedCards removeObjectAtIndex:0];
-                [self.currentlySelectedCards removeObjectAtIndex:0];
             }
+            
+            [self.currentlySelectedCards removeAllObjects];
         } // else do nothing
         
     } 	// else do nothing
