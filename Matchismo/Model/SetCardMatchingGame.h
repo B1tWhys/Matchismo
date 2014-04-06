@@ -12,4 +12,6 @@
 
 - (void)selectCardAtIndex:(NSUInteger)index;
 @property (nonatomic, strong, readonly) NSMutableArray *currentlySelectedCards;
+@property (nonatomic, strong, readonly) NSMutableArray *selectedCardsCache;
+@property (nonatomic, readonly) int scoreOnLastSelection;
 @end

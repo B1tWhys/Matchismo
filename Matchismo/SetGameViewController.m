@@ -9,12 +9,12 @@
 #import "SetGameViewController.h"
 #import "SetCardMatchingGame.h"
 #import "SetCardDeck.h"
-//#import "<QuartzCore/CoreAnimation.h>"
 #import "CoreImage/CIColor.h"
 #import "CoreImage/CIImage.h"
 
 @interface SetGameViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (strong, nonatomic) IBOutlet UILabel *setGameFlipResults;
 @end
 
 @implementation SetGameViewController
@@ -112,6 +112,29 @@
     return fontSize;
 }
 
+-(NSAttributedString *)getAttributedStringFromCard:(SetCard *) card
+{
+    NSString *shapeCharacter = [self getDisplayCharacter:card.shape];
+    NSString *displayString = [self getDisplayString:shapeCharacter shapeCount:card.count];
+    UIColor *color = [self getDisplayColor:card.color];
+    UIColor *colorWithAlpha = [self getDisplayColorWithAlpha:color fillCode:card.fill];
+    float fontSize = [self getFontSize:card.shape];
+    UIFont *fontWithSize = [UIFont fontWithName:@"Helvetica" size: fontSize];
+    NSNumber *strokeWidth = [NSNumber numberWithFloat: -3.0];
+    
+    if (((Card *)card).isPlayable == false) {
+        displayString = @"";
+    }
+    
+    NSAttributedString *cardText = [[NSAttributedString alloc] initWithString:displayString
+                                                                   attributes:@{NSFontAttributeName: fontWithSize,
+                                                                                NSStrokeWidthAttributeName: strokeWidth,
+                                                                                NSStrokeColorAttributeName: color,
+                                                                                NSForegroundColorAttributeName: colorWithAlpha}];
+    
+    return cardText;
+}
+
 - (void)updateUI
 {
     // count - 0 = undefined, 1-3 are valid values
@@ -126,30 +149,30 @@
     // Compute and set the UI state for each cardButton.
     for (UIButton *cardButton in self.cardButtons) {
         SetCard *card = (SetCard *) [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-        
-        
-        NSString *shapeCharacter = [self getDisplayCharacter:card.shape];
-        NSString *displayString = [self getDisplayString:shapeCharacter shapeCount:card.count];
-        UIColor *color = [self getDisplayColor:card.color];
-        UIColor *colorWithAlpha = [self getDisplayColorWithAlpha:color fillCode:card.fill];
-        float fontSize = [self getFontSize:card.shape];
-        UIFont *fontWithSize = [UIFont fontWithName:@"Helvetica" size: fontSize];
-        NSNumber *strokeWidth = [NSNumber numberWithFloat: -3.0];
     
+        NSAttributedString *cardText = [self getAttributedStringFromCard:card];
         
-        if (((Card *)card).isPlayable == false) {
-            displayString = @"";
-        }
-        
-        NSAttributedString *cardText = [[NSAttributedString alloc] initWithString:displayString
-                                                                       attributes:@{NSFontAttributeName: fontWithSize,
-                                                                                    NSStrokeWidthAttributeName: strokeWidth,
-                                                                                    NSStrokeColorAttributeName: color,
-                                                                                    NSForegroundColorAttributeName: colorWithAlpha}];
         [cardButton setAttributedTitle:cardText forState:UIControlStateNormal];
         [cardButton setAttributedTitle:cardText forState:UIControlStateSelected];
-
         
+        SetCardMatchingGame *setCardMatchingGame = (SetCardMatchingGame *) self.game;
+        NSArray *selectedCards = (NSArray *) setCardMatchingGame.selectedCardsCache;
+        
+        if (setCardMatchingGame.scoreOnLastSelection == 0) {
+            self.setGameFlipResults.attributedText = "Flip a card.";
+        } else if (setCardMatchingGame.scoreOnLastSelection > 0) {
+            NSMutableAttributedString *intermidateString = [[NSMutableAttributedString alloc] init];
+            
+            [intermidateString appendAttributedString:cardText]; //This is how we will append the strings together to make the setGameMatchResults
+            
+          self.setGameFlipResults.attributedText = [NSString stringWithFormat:@"Matched %@, %@ and %@ for %i points!",
+             selectedCards[0],
+             selectedCards[1],
+             selectedCards[2],
+             setCardMatchingGame.scoreOnLastSelection];
+        } else { self.setGameFlipResults.attributedText = [NSString stringWithFormat:@"%@, %@ and %@ do not match.  %i points!", setCardMatchingGame.selectedCardsCache[0], setCardMatchingGame.selectedCardsCache[1], setCardMatchingGame.selectedCardsCache[2], setCardMatchingGame.scoreOnLastSelection];
+            
+        }
 
         // If the card associated with this cardButton is in the list of currentlySelectedCards,
         // then we'll set the background of the cardButton to illustrate this.

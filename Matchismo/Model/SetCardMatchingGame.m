@@ -10,7 +10,9 @@
 #import "SetCardMatchingGame.h"
 
 @interface SetCardMatchingGame()
-@property (nonatomic, strong) NSMutableArray *currentlySelectedCards;
+@property (nonatomic, readwrite) int scoreOnLastSelection;
+@property (nonatomic, strong, readwrite) NSMutableArray *currentlySelectedCards;
+@property (nonatomic, strong, readwrite) NSMutableArray *selectedCardsCache;
 @property (nonatomic, readwrite) int totalScore;
 @property (nonatomic, readwrite) NSString *flipResults;
 @property (nonatomic, readwrite) int flipCount;
@@ -80,11 +82,14 @@
             // compute score
             if ([self isMatch]) {
                 self.totalScore += MATCH_SCORE;
+                self.scoreOnLastSelection = MATCH_SCORE;
                 for (Card *selectedCard in self.currentlySelectedCards) {
                     selectedCard.playable = false;
                 }
+                self.selectedCardsCache = (NSMutableArray *) [NSArray arrayWithArray:self.currentlySelectedCards];
             } else { // there is no match
                 self.totalScore -= MISMATCH_PENALTY;
+                self.scoreOnLastSelection = -MISMATCH_PENALTY;
                 // in this case, the last card to be selected remains selected and the other cards are set deselected in the UI and removed from currentlySelectedCards.
             }
             
