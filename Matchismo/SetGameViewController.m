@@ -131,8 +131,29 @@
                                                                                 NSStrokeWidthAttributeName: strokeWidth,
                                                                                 NSStrokeColorAttributeName: color,
                                                                                 NSForegroundColorAttributeName: colorWithAlpha}];
-    
+
     return cardText;
+}
+
+- (NSAttributedString *)convertStringToNSAttributedString:(NSString *)inputString
+{
+    NSAttributedString *returnAttributedString = [[NSAttributedString alloc] initWithString:inputString attributes: @{}];
+    return returnAttributedString;
+}
+
+- (NSAttributedString *)getEnglishListOfTheThreeCards
+{
+    SetCardMatchingGame *setCardMatchingGame = (SetCardMatchingGame *) self.game;
+    NSArray *selectedCards = (NSArray *) setCardMatchingGame.selectedCardsCache;
+    NSMutableAttributedString *threeCardsText = [[NSMutableAttributedString alloc] init];
+
+    [threeCardsText appendAttributedString:[self getAttributedStringFromCard:selectedCards[0]]];
+//    [threeCardsText appendAttributedString:[self convertStringToNSAttributedString:@", "]];
+//    [threeCardsText appendAttributedString:[self getAttributedStringFromCard:selectedCards[1]]];
+//    [threeCardsText appendAttributedString:[self convertStringToNSAttributedString:@" and "]];
+//    [threeCardsText appendAttributedString:[self getAttributedStringFromCard:selectedCards[2]]];
+    
+    return threeCardsText;
 }
 
 - (void)updateUI
@@ -156,24 +177,24 @@
         [cardButton setAttributedTitle:cardText forState:UIControlStateSelected];
         
         SetCardMatchingGame *setCardMatchingGame = (SetCardMatchingGame *) self.game;
-        NSArray *selectedCards = (NSArray *) setCardMatchingGame.selectedCardsCache;
+        
+        NSMutableAttributedString *flipResultsText = [[NSMutableAttributedString alloc] init];
         
         if (setCardMatchingGame.scoreOnLastSelection == 0) {
-            self.setGameFlipResults.attributedText = "Flip a card.";
+            [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:@"Flip a card."]];
         } else if (setCardMatchingGame.scoreOnLastSelection > 0) {
-            NSMutableAttributedString *intermidateString = [[NSMutableAttributedString alloc] init];
-            
-            [intermidateString appendAttributedString:cardText]; //This is how we will append the strings together to make the setGameMatchResults
-            
-          self.setGameFlipResults.attributedText = [NSString stringWithFormat:@"Matched %@, %@ and %@ for %i points!",
-             selectedCards[0],
-             selectedCards[1],
-             selectedCards[2],
-             setCardMatchingGame.scoreOnLastSelection];
-        } else { self.setGameFlipResults.attributedText = [NSString stringWithFormat:@"%@, %@ and %@ do not match.  %i points!", setCardMatchingGame.selectedCardsCache[0], setCardMatchingGame.selectedCardsCache[1], setCardMatchingGame.selectedCardsCache[2], setCardMatchingGame.scoreOnLastSelection];
-            
+            [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:@"Matched "]];
+            [flipResultsText appendAttributedString:[self getEnglishListOfTheThreeCards]];
+            [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:@" for "]];
+            [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:[NSString stringWithFormat:@"%i points!", setCardMatchingGame.scoreOnLastSelection]]];
+        } else {
+            [flipResultsText appendAttributedString:[self getEnglishListOfTheThreeCards]];
+            [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:@"do not match."]];
+            [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:[NSString stringWithFormat:@"%i point penalty!", setCardMatchingGame.scoreOnLastSelection]]];
         }
-
+        
+        [self.setGameFlipResults setAttributedText:flipResultsText];
+        
         // If the card associated with this cardButton is in the list of currentlySelectedCards,
         // then we'll set the background of the cardButton to illustrate this.
         cardButton.selected = [((SetCardMatchingGame *) self.game).currentlySelectedCards containsObject:card];
