@@ -15,6 +15,7 @@
 @interface SetGameViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (strong, nonatomic) IBOutlet UILabel *setGameFlipResults;
+@property (strong, nonatomic) IBOutlet UILabel *flipsLabel;
 @end
 
 @implementation SetGameViewController
@@ -112,7 +113,20 @@
     return fontSize;
 }
 
--(NSAttributedString *)getAttributedStringFromCard:(SetCard *) card
+- (NSNumber *)getBaselineOffset:(int)shapeCode
+{
+    float baselineOffset;
+    switch (shapeCode) {
+        case 1: baselineOffset = 0; break; // ◼
+        case 2: baselineOffset = 1; break; // ●
+        case 3: baselineOffset = -1; break; // ▲
+        default: baselineOffset = 20; break;
+    }
+    return [NSNumber numberWithFloat: baselineOffset];
+
+}
+
+-(NSAttributedString *)getAttributedStringFromCard:(SetCard *) card ignorePlayablility:(BOOL) ignorePlayablility
 {
     NSString *shapeCharacter = [self getDisplayCharacter:card.shape];
     NSString *displayString = [self getDisplayString:shapeCharacter shapeCount:card.count];
@@ -121,8 +135,9 @@
     float fontSize = [self getFontSize:card.shape];
     UIFont *fontWithSize = [UIFont fontWithName:@"Helvetica" size: fontSize];
     NSNumber *strokeWidth = [NSNumber numberWithFloat: -3.0];
+    NSNumber *baselineOffset = [self getBaselineOffset:card.shape];
     
-    if (((Card *)card).isPlayable == false) {
+    if (!(((Card *)card).isPlayable || ignorePlayablility)) {
         displayString = @"";
     }
     
@@ -130,7 +145,8 @@
                                                                    attributes:@{NSFontAttributeName: fontWithSize,
                                                                                 NSStrokeWidthAttributeName: strokeWidth,
                                                                                 NSStrokeColorAttributeName: color,
-                                                                                NSForegroundColorAttributeName: colorWithAlpha}];
+                                                                                NSForegroundColorAttributeName: colorWithAlpha,
+                                                                                NSBaselineOffsetAttributeName: baselineOffset}];
 
     return cardText;
 }
@@ -147,12 +163,12 @@
     NSArray *selectedCards = (NSArray *) setCardMatchingGame.selectedCardsCache;
     NSMutableAttributedString *threeCardsText = [[NSMutableAttributedString alloc] init];
 
-    [threeCardsText appendAttributedString:[self getAttributedStringFromCard:selectedCards[0]]];
-//    [threeCardsText appendAttributedString:[self convertStringToNSAttributedString:@", "]];
-//    [threeCardsText appendAttributedString:[self getAttributedStringFromCard:selectedCards[1]]];
-//    [threeCardsText appendAttributedString:[self convertStringToNSAttributedString:@" and "]];
-//    [threeCardsText appendAttributedString:[self getAttributedStringFromCard:selectedCards[2]]];
-    
+    [threeCardsText appendAttributedString:[self getAttributedStringFromCard:selectedCards[0] ignorePlayablility:true]];
+    [threeCardsText appendAttributedString:[self convertStringToNSAttributedString:@", "]];
+    [threeCardsText appendAttributedString:[self getAttributedStringFromCard:selectedCards[1] ignorePlayablility:true]];
+    [threeCardsText appendAttributedString:[self convertStringToNSAttributedString:@" and "]];
+    [threeCardsText appendAttributedString:[self getAttributedStringFromCard:selectedCards[2] ignorePlayablility:true]];
+    [threeCardsText appendAttributedString:[self convertStringToNSAttributedString:@" "]];
     return threeCardsText;
 }
 
@@ -165,41 +181,41 @@
     
     [super updateUI];
     
+    self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %i", self.game.flipCount];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %i", self.game.totalScore];
     
     // Compute and set the UI state for each cardButton.
     for (UIButton *cardButton in self.cardButtons) {
         SetCard *card = (SetCard *) [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
     
-        NSAttributedString *cardText = [self getAttributedStringFromCard:card];
+        NSAttributedString *cardText = [self getAttributedStringFromCard:card ignorePlayablility:false];
         
         [cardButton setAttributedTitle:cardText forState:UIControlStateNormal];
         [cardButton setAttributedTitle:cardText forState:UIControlStateSelected];
         
-        SetCardMatchingGame *setCardMatchingGame = (SetCardMatchingGame *) self.game;
-        
-        NSMutableAttributedString *flipResultsText = [[NSMutableAttributedString alloc] init];
-        
-        if (setCardMatchingGame.scoreOnLastSelection == 0) {
-            [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:@"Flip a card."]];
-        } else if (setCardMatchingGame.scoreOnLastSelection > 0) {
-            [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:@"Matched "]];
-            [flipResultsText appendAttributedString:[self getEnglishListOfTheThreeCards]];
-            [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:@" for "]];
-            [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:[NSString stringWithFormat:@"%i points!", setCardMatchingGame.scoreOnLastSelection]]];
-        } else {
-            [flipResultsText appendAttributedString:[self getEnglishListOfTheThreeCards]];
-            [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:@"do not match."]];
-            [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:[NSString stringWithFormat:@"%i point penalty!", setCardMatchingGame.scoreOnLastSelection]]];
-        }
-        
-        [self.setGameFlipResults setAttributedText:flipResultsText];
         
         // If the card associated with this cardButton is in the list of currentlySelectedCards,
         // then we'll set the background of the cardButton to illustrate this.
         cardButton.selected = [((SetCardMatchingGame *) self.game).currentlySelectedCards containsObject:card];
     }
+    SetCardMatchingGame *setCardMatchingGame = (SetCardMatchingGame *) self.game;
     
+    NSMutableAttributedString *flipResultsText = [[NSMutableAttributedString alloc] init];
+    
+    if (setCardMatchingGame.scoreOnLastSelection == 0) {
+        [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:@"Flip a card."]];
+    } else if (setCardMatchingGame.scoreOnLastSelection > 0) {
+        [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:@"Matched "]];
+        [flipResultsText appendAttributedString:[self getEnglishListOfTheThreeCards]];
+        [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:@" for "]];
+        [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:[NSString stringWithFormat:@"%i points!", setCardMatchingGame.scoreOnLastSelection]]];
+    } else {
+        [flipResultsText appendAttributedString:[self getEnglishListOfTheThreeCards]];
+        [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:@"do not match."]];
+        [flipResultsText appendAttributedString:[self convertStringToNSAttributedString:[NSString stringWithFormat:@" %i point penalty!", -setCardMatchingGame.scoreOnLastSelection]]];
+    }
+    
+    [self.setGameFlipResults setAttributedText:flipResultsText];
 }
 
 @end

@@ -41,7 +41,7 @@
 {
     BOOL match;
     if (prop1 == prop2 && prop2 == prop3) match = YES;
-    else if (prop1 != prop2 && prop2 != prop3 && prop1 != prop3) match = YES;
+//    else if (prop1 != prop2 && prop2 != prop3 && prop1 != prop3) match = YES;
     else match = NO;
     return match;
 }
@@ -76,6 +76,8 @@
     if (cardIsValid) {
         [self.currentlySelectedCards addObject:currentCard];
         
+        self.flipCount++;
+        
         self.totalScore -= SELECT_COST;
         
         if ([self.currentlySelectedCards count] == 3) {
@@ -86,13 +88,12 @@
                 for (Card *selectedCard in self.currentlySelectedCards) {
                     selectedCard.playable = false;
                 }
-                self.selectedCardsCache = (NSMutableArray *) [NSArray arrayWithArray:self.currentlySelectedCards];
             } else { // there is no match
                 self.totalScore -= MISMATCH_PENALTY;
                 self.scoreOnLastSelection = -MISMATCH_PENALTY;
                 // in this case, the last card to be selected remains selected and the other cards are set deselected in the UI and removed from currentlySelectedCards.
             }
-            
+            self.selectedCardsCache = (NSMutableArray *) [NSArray arrayWithArray:self.currentlySelectedCards];
             [self.currentlySelectedCards removeAllObjects];
         } // else do nothing
         

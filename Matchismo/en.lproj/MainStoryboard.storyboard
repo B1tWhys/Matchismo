@@ -815,6 +815,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Set" image="set.tif" id="1ip-7P-Wtq"/>
                     <connections>
+                        <outlet property="flipsLabel" destination="5rd-bu-NLo" id="CU2-3f-XGB"/>
                         <outlet property="scoreLabel" destination="AHH-ne-BFj" id="Evg-8s-H5H"/>
                         <outlet property="setGameFlipResults" destination="Nb4-La-NV6" id="B8d-j9-ZmW"/>
                         <outletCollection property="cardButtons" destination="9vC-R3-eMo" id="sXq-bX-N9N"/>
