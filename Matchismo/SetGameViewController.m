@@ -31,7 +31,11 @@
 
 - (IBAction) newGame
 {
-    
+    SetCardDeck *scDeck = [[SetCardDeck alloc] init];
+    self.game = [self.game initWithCardCount:self.cardButtons.count usingDeck:scDeck];
+    self.flipsLabel.text = @"Flips: 0";
+    [self updateUI];
+    self.setGameFlipResults.text = @"Flip a card!";
 }
 
 
@@ -83,7 +87,7 @@
     float alpha;
     switch (fillCode) {
         case 1: alpha = 0.0; break;
-        case 2: alpha = 0.4; break;
+        case 2: alpha = 0.2; break;
         case 3: alpha = 1.0; break;
         default: alpha = -1.0; break;
     }
@@ -174,10 +178,10 @@
 
 - (void)updateUI
 {
-    // count - 0 = undefined, 1-3 are valid values
-    // shape - 0 = undefined, 1 = square, 2 = circle, 3 = triangle
-    // fill - 0 = undefined, 1 = none, 2 = shaded, 3 = solid
-    // color - 0 = undefined, 1 = red, 2 = green, 3 = blue
+    // count -- 0 = undefined, 1-3 are valid values
+    // shape -- 0 = undefined, 1 = square, 2 = circle, 3 = triangle
+    // fill -- 0 = undefined, 1 = none, 2 = shaded, 3 = solid
+    // color -- 0 = undefined, 1 = red, 2 = green, 3 = blue
     
     [super updateUI];
     
