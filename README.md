@@ -1,4 +1,5 @@
-**If you are thinking about hiring me (or accepting me or whatever) I did this project in 7th grade... PLEASE don't judge me based on this!!** (Thanks!)
+# If you are thinking about hiring me (or accepting me or whatever) I did this project in 7th grade... PLEASE don't judge me based on this!!
+(Thanks!)
 
 This is where it all starts... well kinda
 
